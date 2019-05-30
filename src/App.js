@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Nav from './components/Nav';
 
 class App extends React.Component {
   constructor() {
@@ -44,8 +45,11 @@ class App extends React.Component {
   }
 
   render() {
+    const { tradingPairsInfo } = this.state;
     return (
-      <div className="App">test</div>
+      <div className="App">
+        {tradingPairsInfo.length ? <Nav pairsInfo={tradingPairsInfo} /> : null}
+      </div>
     );
   }
 }
