@@ -8,11 +8,13 @@ class App extends React.Component {
     this.state = {
       tradingPairsInfo: [],
       selectedPair: 'btcusd',
+      socket: null,
       data: null,
     };
 
     this.getPairsInfo = this.getPairsInfo.bind(this);
     this.createWebsocketConnection = this.createWebsocketConnection.bind(this);
+    this.changePair = this.changePair.bind(this);
   }
 
   componentDidMount() {
@@ -42,13 +44,22 @@ class App extends React.Component {
       const { data } = message;
       this.setState({ data });
     };
+    this.setState({ socket });
+  }
+
+  changePair(event) {
+    const { socket } = this.state;
+    const { value } = event.target;
+    socket.close();
+    this.setState({ selectedPair: value });
+    this.createWebsocketConnection();
   }
 
   render() {
     const { tradingPairsInfo } = this.state;
     return (
       <div className="App">
-        {tradingPairsInfo.length ? <Nav pairsInfo={tradingPairsInfo} /> : null}
+        {tradingPairsInfo.length ? <Nav pairsInfo={tradingPairsInfo} handlePairChange={this.changePair}/> : null}
       </div>
     );
   }

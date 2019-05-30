@@ -1,27 +1,14 @@
 import React from 'react';
 
-class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected: null, 
-    };
-  }
-
-  render() {
-    const { pairsInfo } = this.props; 
-    return (
-      <div>
-        <select>
-          {pairsInfo.map((pair, index) => {
-            const { name } = pair;
-            return <option key={index.toString()}>{name}</option>;
-          })}
-        </select>
-        <button type="submit">Submit!</button>
-      </div>
-    );
-  }
-}
+const Nav = ({ pairsInfo, handlePairChange }) => (
+  <div>
+    <select onChange={e => handlePairChange(e)}>
+      {pairsInfo.map((pair, index) => {
+        const { name, url_symbol } = pair;
+        return <option value={url_symbol} key={index.toString()}>{name}</option>;
+      })}
+    </select>
+  </div>
+);
 
 export default Nav;
