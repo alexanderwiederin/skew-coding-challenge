@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Nav from './components/Nav';
+import OrderBook from './components/OrderBook';
 
 class App extends React.Component {
   constructor() {
@@ -9,7 +10,7 @@ class App extends React.Component {
       tradingPairsInfo: [],
       selectedPair: 'btcusd',
       socket: null,
-      data: null,
+      liveBookData: null,
     };
 
     this.getPairsInfo = this.getPairsInfo.bind(this);
@@ -42,7 +43,8 @@ class App extends React.Component {
     socket.onopen = () => socket.send(JSON.stringify(subscribeMsg));
     socket.onmessage = (message) => {
       const { data } = message;
-      this.setState({ data });
+      const liveBookData = JSON.parse(data);
+      this.setState({ liveBookData });
     };
     this.setState({ socket });
   }
@@ -56,10 +58,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { tradingPairsInfo } = this.state;
+    const { tradingPairsInfo, liveBookData } = this.state;
     return (
       <div className="App">
-        {tradingPairsInfo.length ? <Nav pairsInfo={tradingPairsInfo} handlePairChange={this.changePair}/> : null}
+        {tradingPairsInfo.length ? <Nav pairsInfo={tradingPairsInfo} handlePairChange={this.changePair} /> : null}
+        {liveBookData ? <OrderBook bookData={liveBookData} /> : null}
       </div>
     );
   }
