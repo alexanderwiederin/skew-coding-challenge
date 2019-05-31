@@ -49,11 +49,11 @@ class App extends React.Component {
     this.setState({ socket });
   }
 
-  changePair(event) {
+  async changePair(event) {
     const { socket } = this.state;
     const { value } = event.target;
+    await this.setState({ selectedPair: value });
     socket.close();
-    this.setState({ selectedPair: value });
     this.createWebsocketConnection();
   }
 
