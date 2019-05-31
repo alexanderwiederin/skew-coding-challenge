@@ -1,15 +1,15 @@
 import React from 'react';
+import { Orders } from './Styling';
 
-const OrderColumn = ({ orderData, orderType }) => (
-  <ul>
+const OrderColumn = ({ orders, column }) => (
+  <Orders>
+    <div>{column}</div>
     {
-      orderData.map(bid => (
-        orderType === 'bid'
-          ? <li>{`${bid[1]} @ ${bid[0]}`}</li>
-          : <li>{`${bid[0]} @ ${bid[1]}`}</li>
-      ))
+    orders.map(order => (
+      <div>{column === 'Amount' ? Number(order[1]).toFixed(2) : order[0]}</div>
+    ))
     }
-  </ul>
+  </Orders>
 );
 
 export default OrderColumn;

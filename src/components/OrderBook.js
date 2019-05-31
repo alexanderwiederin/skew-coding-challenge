@@ -1,13 +1,14 @@
 import React from 'react';
-import OrderColumn from './OrderColumn';
+import TradePosition from './TradePosition';
+import { OrderBookContainer } from './Styling';
 
 const OrderBook = ({ bookData }) => {
   const { bids, asks } = bookData.data;
   return (
-    <div>
-      {bids ? <OrderColumn orderData={bids} orderType="bid" /> : null}
-      {bids ? <OrderColumn orderData={asks} orderType="asks" /> : null}
-    </div>
+    <OrderBookContainer>
+      {bids ? <TradePosition orderData={bids} orderType="bids" /> : null}
+      {asks ? <TradePosition orderData={asks} orderType="asks" /> : null}    
+    </OrderBookContainer>
   );
 };
 
