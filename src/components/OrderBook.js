@@ -1,13 +1,12 @@
 import React from 'react';
-import Bids from './Bids';
-import Asks from './Asks';
+import OrderColumn from './OrderColumn';
 
 const OrderBook = ({ bookData }) => {
   const { bids, asks } = bookData.data;
   return (
     <div>
-      {bids ? <Bids bidData={bids} /> : null}
-      {asks ? <Asks askData={asks} /> : null}
+      {bids ? <OrderColumn orderData={bids} orderType="bid" /> : null}
+      {bids ? <OrderColumn orderData={asks} orderType="asks" /> : null}
     </div>
   );
 };
