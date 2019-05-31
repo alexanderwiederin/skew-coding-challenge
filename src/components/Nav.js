@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Nav = ({ pairsInfo, handlePairChange }) => (
   <div>
@@ -10,5 +11,15 @@ const Nav = ({ pairsInfo, handlePairChange }) => (
     </select>
   </div>
 );
+
+Nav.propTypes = {
+  pairsInfo: PropTypes.arrayOf(PropTypes.object),
+  handlePairChange: PropTypes.func,
+};
+
+Nav.defaultProps = {
+  pairsInfo: [],
+  handlePairChange: () => {},
+};
 
 export default Nav;

@@ -10,6 +10,6 @@ const Orders = styled.div`
 
 const OrderBookContainer = styled.div`
   display: flex;
-`
+`;
 
 export { PositionContainer, Orders, OrderBookContainer };

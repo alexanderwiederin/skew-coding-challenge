@@ -61,7 +61,8 @@ class App extends React.Component {
     const { tradingPairsInfo, liveBookData } = this.state;
     return (
       <div className="App">
-        {tradingPairsInfo.length ? <Nav pairsInfo={tradingPairsInfo} handlePairChange={this.changePair} /> : null}
+        {tradingPairsInfo.length
+          ? <Nav pairsInfo={tradingPairsInfo} handlePairChange={this.changePair} /> : null}
         {liveBookData ? <OrderBook bookData={liveBookData} /> : null}
       </div>
     );
