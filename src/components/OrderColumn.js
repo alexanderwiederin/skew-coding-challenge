@@ -4,7 +4,7 @@ import { Orders } from './Styling';
 
 const OrderColumn = ({ orders, column }) => (
   <Orders>
-    <div>{column}</div>
+    <h1>{column}</h1>
     {
     orders.map((order, index) => (
       <div key={index.toString()}>{column === 'Amount' ? Number(order[1]).toFixed(2) : order[0]}</div>
